@@ -1,3 +1,4 @@
+from urllib import request
 import os
 import openai
 import ast
@@ -18,18 +19,17 @@ load_dotenv()
 #     "salt": {"quantity": 1, "unit": "kg"},
 # }
 
+
 def generate_recipe(JSON_RESPONSE):
-  openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
-  response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=generate_chat_gpt_prompt(JSON_RESPONSE),
-    temperature=0.5,
-    max_tokens=3700,
-  )
-  return convert_response_to_dict(response)
-    
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=generate_chat_gpt_prompt(JSON_RESPONSE),
+        temperature=0.5,
+        max_tokens=3700,
+    )
+    return convert_response_to_dict(response)
 
 
 def generate_chat_gpt_prompt(JSON_RESPONSE):
@@ -55,8 +55,6 @@ def generate_chat_gpt_prompt(JSON_RESPONSE):
     return prompt
 
 
-
-
 def convert_response_to_dict(response):
     """Convert the response to a dict."""
     response = response["choices"][0]["text"]
@@ -65,3 +63,10 @@ def convert_response_to_dict(response):
 
 
 # print(generate_chat_gpt_prompt(JSON_RESPONSE))
+
+
+def decode_and_save(uri):
+    with request.urlopen(uri) as response:
+        data = response.read()
+    with open("image.png", "wb") as f:
+        f.write(data)
