@@ -99,6 +99,13 @@ class getByCategory(Resource):
     
 class scanReceipt(Resource):
     def post(self):
+        def isfloat(num):
+          try:
+              float(num)
+              return True
+          except ValueError:
+              return False
+
         decode_and_save(request.json['image'])
         data = main()
         print(data)
@@ -106,7 +113,7 @@ class scanReceipt(Resource):
         for item in data:
             print(item)
             index_split = 0 
-            if math.isnan(item['amount']):
+            if isfloat(item['amount']) and math.isnan(item['amount']):
                 item['amount'] = "1kg"
 
             for i in range(len(item['amount'])):
