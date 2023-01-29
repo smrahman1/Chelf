@@ -1,0 +1,18 @@
+.imageContainer {
+  width: 90%;
+  background-color: #e4e4e4;
+  margin: 30px auto;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: wrap column;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+.buttonClass {
+  font-size: 28px;
+}
+h3 {
+  margin: 30px 0;
+  font-size: 28px;
+}

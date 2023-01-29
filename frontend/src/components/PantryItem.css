@@ -5,24 +5,68 @@
   align-items: center;
   list-style: none;
   background-color: lightgray;
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 30px auto;
   border-radius: 20px;
+  padding-bottom: 15px;
 }
 
 .ingredient {
   display: flex;
   flex-flow: wrap row;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
   align-items: center;
-  padding: 10px 25px;
-  margin: 10px 0;
+  padding: 10px 16px;
+  margin: 5px 0;
   background-color: white;
   border-radius: 20px;
+}
+
+.quantities {
+  justify-content: space-around;
+  display: flex;
+  flex-flow: wrap row;
+  gap: 6px;
+}
+
+.quantityNumber {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border-color: grey;
+  border-width: 2px;
+  border-style: solid;
+  background-color: lightgrey;
+  display: flex;
+  align-items: center;
+}
+
+.quantityUnit {
+  padding: 5px 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: black;
 }
 
 p {
   margin: 0;
   background-color: lightgray;
+}
+
+h4 {
+  margin: 0;
+}
+
+.buttonClass {
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  width: 89%;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #ff6262;
+  border-style: none;
+  margin: auto;
+  margin-top: 15px;
 }
