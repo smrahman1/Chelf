@@ -1,6 +1,6 @@
 .imageContainer {
   width: 90%;
-  background-color: lightgray;
+  background-color: #e4e4e4;
   margin: 30px auto;
   border-radius: 20px;
   display: flex;
@@ -14,4 +14,5 @@
 }
 h3 {
   margin: 30px 0;
+  font-size: 28px;
 }

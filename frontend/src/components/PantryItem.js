@@ -33,9 +33,9 @@ function PantryItem() {
     <>
       <div className="ingredientList">
         <h2>{title}</h2>
-        <Ingredient name="Tomatoes" amount="4" unit="U"></Ingredient>
-        <Ingredient name="Apples" amount="6" unit="U"></Ingredient>
-        <Ingredient name="Bell Peppers" amount="2" unit="U"></Ingredient>
+        <Ingredient name="Tomatoes" amount="4" unit="Single"></Ingredient>
+        <Ingredient name="Apples" amount="6" unit="Single"></Ingredient>
+        <Ingredient name="Bell Peppers" amount="2" unit="Single"></Ingredient>
         <button className="buttonClass" onClick={handleOpen}>
           Add Ingredient
         </button>
