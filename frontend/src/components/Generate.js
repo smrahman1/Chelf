@@ -3,19 +3,21 @@ import LoopIcon from "@mui/icons-material/Loop";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import RecipeItem from "./RecipeItem";
+import { useState, useEffect } from "react";
 
 function Generate() {
-  const testData = [
-    {
-      title: "Chicken Parmesan",
-    },
-    {
-      title: "Chick Parm",
-    },
-    {
-      title: "Parm",
-    },
-  ];
+  const [data, setData] = useState({});
+
+  const generateData = async () => {
+    const response = await fetch("http://localhost:5000/generateRecipe", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    setData(data);
+  };
 
   return (
     <>
@@ -32,8 +34,8 @@ function Generate() {
       </div>
 
       <div className="recipesContainer">
-        {testData && testData.map((item) => <RecipeItem item={item} />)}
-        {!testData && <div className="noRecipes">No Recipes Found</div>}
+        {data && data.map((item) => <RecipeItem item={item} />)}
+        {!data && <div className="noRecipes">No Recipes Found</div>}
       </div>
     </>
   );
