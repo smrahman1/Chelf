@@ -39,7 +39,7 @@ def generate_chat_gpt_prompt(JSON_RESPONSE):
         prompt += f"{JSON_RESPONSE[item]['quantity']} {JSON_RESPONSE[item]['unit']} of {item}\n"
     prompt += """What can I make? Generate the servings for one person. You are free to use ingredients I don't have but try to maximize both the taste of the food and the amount of existing ingredients used. Only recommend commonly eaten and popular items\n"""
     prompt += "List out all the ingredients in the following format. For example:\n"
-    prompt += "{'Name': CAKE,"
+    prompt += "[{'Name': CAKE,"
     prompt += "  Ingredients: {"
     prompt += "  'flour': {'amount': '0.24'; 'unit': 'kg'}"
     prompt += "  'sugar': {'amount': '0.24'; 'unit': 'kg'}"
@@ -50,7 +50,7 @@ def generate_chat_gpt_prompt(JSON_RESPONSE):
     prompt += "  'Bake for 30 minutes',"
     prompt += "  'Enjoy!',"
     prompt += "  ],"
-    prompt += "}"
+    prompt += "}]"
     prompt += "\nGive the response in JSON format without any line breaks, in other words return the JSON object all on the same line. Try to generate 3 recommendations that vary in type of food\n"
     return prompt
 
@@ -59,7 +59,7 @@ def convert_response_to_dict(response):
     """Convert the response to a dict."""
     response = response["choices"][0]["text"]
     response = ast.literal_eval(response)
-    return json.dumps(response)
+    return response
 
 
 # print(generate_chat_gpt_prompt(JSON_RESPONSE))

@@ -23,8 +23,10 @@ function CameraPage() {
   return (
     <>
       <div className="imageContainer">
-        <button className="buttonClass">Upload Image</button>
-        <input type="file" onChange={handleFileChange} />
+        <label for="file-upload" className="buttonClass uploadClass">
+          Upload Image
+        </label>
+        <input id="file-upload" type="file" onChange={handleFileChange} />
         <h3>OR</h3>
         <button
           className="buttonClass"

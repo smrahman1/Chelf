@@ -6,7 +6,7 @@ function RecipeItem(props) {
   return (
     <div className="recipe">
       <GiHotMeal className="recipeIcon" />
-      <h2 className="recipeTitle">{props.item.title}</h2>
+      <h2 className="recipeTitle">{props.item.Name}</h2>
       <VisibilityIcon className="viewIcon" />
     </div>
   );

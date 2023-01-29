@@ -6,7 +6,7 @@ import RecipeItem from "./RecipeItem";
 import { useState, useEffect } from "react";
 
 function Generate() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   const generateData = async () => {
     const response = await fetch("http://localhost:5000/generateRecipe", {
@@ -15,13 +15,16 @@ function Generate() {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
-    setData(data);
+    const res = await response.json();
+    console.log(res);
+    console.log(res.data);
+    console.log(typeof res.data);
+    setData(res.data);
   };
 
   return (
     <>
-      <div className="container3">
+      <div className="container3" onClick={generateData}>
         <div className="title3">Generate Recipes</div>
         <LoopIcon className="cycleIcon" />
       </div>
@@ -34,8 +37,11 @@ function Generate() {
       </div>
 
       <div className="recipesContainer">
-        {data && data.map((item) => <RecipeItem item={item} />)}
-        {!data && <div className="noRecipes">No Recipes Found</div>}
+        {!!data?.length &&
+          data.map((item) => <RecipeItem item={item} key={item.Name} />)}
+        {!data?.length && (
+          <div className="noRecipes">No recipes generated...</div>
+        )}
       </div>
     </>
   );

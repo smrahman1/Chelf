@@ -82,6 +82,16 @@ class getAllItems(Resource):
 
         return {'status': 'success',
                 'data': json.dumps(rows, default=str, sort_keys=True)}
+    
+class getByCategory(Resource):
+    def get(self):
+        cur = conn.cursor()
+        cur.execute("SELECT name, quantity, unit FROM pantry WHERE category = %s", (request.json['category'],))
+        rows = cur.fetchall()
+        cur.close()
+
+        return {'status': 'success',
+                'data': json.dumps(rows, default=str, sort_keys=True)}
         
   
 api.add_resource(generateRecipe, '/generateRecipe')
@@ -89,6 +99,7 @@ api.add_resource(addItems, '/addItems')
 api.add_resource(removeItem, '/removeItem')
 api.add_resource(updateItem, '/updateItem')
 api.add_resource(getAllItems, '/getAllItems')
+api.add_resource(getByCategory, '/getByCategory')
 
 if __name__ == '__main__':
     app.run(debug=True)

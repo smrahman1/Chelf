@@ -85,3 +85,7 @@
   height: 60%;
   overflow: scroll;
 }
+
+.noRecipes {
+  margin-top: 20px;
+}
