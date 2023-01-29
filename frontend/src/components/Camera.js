@@ -1,10 +1,19 @@
+import "./Camera.css"
+
 function Camera() {
   return (
     <>
       <div className="imageContainer">
-        <button></button>
+        <button>
+          Upload Image
+        </button>
+        <h3>
+          OR
+        </h3>
+        <button>
+          Take A Picture With Your Camera
+        </button>
       </div>
-      ;
     </>
   );
 }

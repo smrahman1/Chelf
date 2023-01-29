@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import "./PantryItem.css";
+import Ingredient from "./Ingredient";
+
 
 function PantryItem() {
   const category_to_label = {
@@ -18,12 +20,12 @@ function PantryItem() {
   return (
     <div className="ingredientList">
       <h2>{title}</h2>
-      <div className="ingredient">
-        <h4>Tomatoes</h4>
-        <div>
-          <p>2 L</p>
-        </div>
-      </div>
+      <Ingredient name="Tomatoes" amount="4" unit="U"></Ingredient>
+      <Ingredient name="Apples" amount="6" unit="U"></Ingredient>
+      <Ingredient name="Bell Peppers" amount="2" unit="U"></Ingredient>
+      <button>
+        Add Ingredient
+      </button>
     </div>
   );
 }
