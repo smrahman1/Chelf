@@ -4,9 +4,28 @@ import Camera from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 
 function CameraPage() {
+  const [uploaded, setUploaded] = useState(false);
+
+  const photoFetcher = async (dataUri) => {
+    const response = await fetch("http://localhost:5000/scanReceipt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        image: dataUri,
+      }),
+    });
+    setUploaded(true);
+
+    setTimeout(() => {
+      setUploaded(false);
+    }, 3000);
+  };
+
   function handleTakePhoto(dataUri) {
     // This gets given to backend
-    console.log(dataUri);
+    photoFetcher(dataUri);
   }
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -15,7 +34,7 @@ function CameraPage() {
     reader.onloadend = () => {
       const base64data = reader.result;
       // This gets given to the backend
-      console.log(base64data);
+      photoFetcher(base64data);
     };
   };
   const [cameraOpen, setCameraOpen] = useState(false);
@@ -42,6 +61,7 @@ function CameraPage() {
           }}
         />
       )}
+      {uploaded && <h3 style={{ textAlign: "center" }}>Receipt Uploaded!</h3>}
     </>
   );
 }

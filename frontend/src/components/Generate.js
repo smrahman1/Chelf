@@ -7,8 +7,10 @@ import { useState, useEffect } from "react";
 
 function Generate() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const generateData = async () => {
+    setLoading(true);
     const response = await fetch("http://localhost:5000/generateRecipe", {
       method: "GET",
       headers: {
@@ -16,10 +18,8 @@ function Generate() {
       },
     });
     const res = await response.json();
-    console.log(res);
-    console.log(res.data);
-    console.log(typeof res.data);
     setData(res.data);
+    setLoading(false);
   };
 
   return (
@@ -38,10 +38,18 @@ function Generate() {
 
       <div className="recipesContainer">
         {!!data?.length &&
-          data.map((item) => <RecipeItem item={item} key={item.Name} />)}
-        {!data?.length && (
+          data.map((item) => (
+            <RecipeItem
+              item={item}
+              key={item.Name}
+              ingredients={item.Ingredients}
+              instructions={item.Instructions}
+            />
+          ))}
+        {!data?.length && !loading && (
           <div className="noRecipes">No recipes generated...</div>
         )}
+        {loading && <div className="noRecipes">Loading...</div>}
       </div>
     </>
   );
