@@ -1,16 +1,14 @@
-import Camera from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
+import "./Camera.css";
 
 function CameraPage() {
-  function handleTakePhoto(dataUri) {
-    console.log("takePhoto");
-  }
   return (
-    <Camera
-      onTakePhoto={(dataUri) => {
-        handleTakePhoto(dataUri);
-      }}
-    />
+    <>
+      <div className="imageContainer">
+        <button>Upload Image</button>
+        <h3>OR</h3>
+        <button>Take A Picture With Your Camera</button>
+      </div>
+    </>
   );
 }
 
