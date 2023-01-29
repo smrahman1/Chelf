@@ -68,5 +68,5 @@ def convert_response_to_dict(response):
 def decode_and_save(uri):
     with request.urlopen(uri) as response:
         data = response.read()
-    with open("image.png", "wb") as f:
+    with open("./ml_models/image.png", "wb") as f:
         f.write(data)

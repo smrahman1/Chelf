@@ -1,12 +1,14 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
-from main import generate_recipe
+from main import generate_recipe, decode_and_save
+from ml_models.textract_expense import main
 
 import json
 import os
 from dotenv import load_dotenv
 import psycopg2
+import math
 
 load_dotenv()
 
@@ -94,6 +96,37 @@ class getByCategory(Resource):
 
         return {'status': 'success',
                 'data': rows}
+    
+class scanReceipt(Resource):
+    def post(self):
+        decode_and_save(request.json['image'])
+        data = main()
+        print(data)
+        cur = conn.cursor()
+        for item in data:
+            print(item)
+            index_split = 0 
+            if math.isnan(item['amount']):
+                item['amount'] = "1kg"
+
+            for i in range(len(item['amount'])):
+                if ('0' > item['amount'][i] or item['amount'][i] > '9') and item['amount'][i] != '.' :
+                    index_split = i
+                    break
+            cur.execute("SELECT * FROM pantry WHERE name = %s", (item['item'],))
+            rows = cur.fetchall()
+            if len(rows) > 0:
+                cur.execute("UPDATE pantry SET quantity = quantity + %s WHERE name = %s", (float(item['amount'][:index_split]), item['item'],))
+            else:
+                cur.execute("INSERT INTO pantry (name, quantity, unit, category) VALUES (%s, %s, %s, %s)", (item['item'], float(item['amount'][:index_split]), item['amount'][index_split:], item['category'].lower()))
+        conn.commit()
+        cur.close()
+        return {'status': 'success', 'data': data}
+        
+
+
+    
+    
         
   
 api.add_resource(generateRecipe, '/generateRecipe')
@@ -102,6 +135,7 @@ api.add_resource(removeItem, '/removeItem')
 api.add_resource(updateItem, '/updateItem')
 api.add_resource(getAllItems, '/getAllItems')
 api.add_resource(getByCategory, '/getByCategory')
+api.add_resource(scanReceipt, '/scanReceipt')
 
 if __name__ == '__main__':
     app.run(debug=True)

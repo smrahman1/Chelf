@@ -22,8 +22,8 @@ cur.execute('DROP TABLE IF EXISTS pantry;')
 # Execute a command: this creates a new table called pantry that has 6 columns and 1 row of data in it (id, name, quantity, unit, category, expiration_date). id is the primary key, unit can be null, and expiration_date has a default value of null.
 cur.execute('CREATE TABLE pantry (id serial PRIMARY KEY,'
                                   'name varchar (150) NOT NULL,'                      
-                                  'quantity integer NOT NULL,'
-                                  'unit varchar (50) NOT NULL DEFAULT '','
+                                  'quantity decimal NOT NULL,'
+                                  'unit varchar (50) NOT NULL,'
                                   'category varchar (50) NOT NULL,'
                                   'expiration_date date);'
                                   )
