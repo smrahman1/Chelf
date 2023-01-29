@@ -58,7 +58,7 @@ h4 {
   margin: 0;
 }
 
-button {
+.buttonClass {
   color: white;
   font-weight: 900;
   font-size: 18px;
@@ -67,5 +67,6 @@ button {
   border-radius: 10px;
   background-color: #ff6262;
   border-style: none;
-  margin-top: 7px;
+  margin: auto;
+  margin-top: 15px;
 }
