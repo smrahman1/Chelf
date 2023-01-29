@@ -14,6 +14,7 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
+
 conn = psycopg2.connect(
     host=os.getenv('DB_HOST'),
     database=os.getenv('DB_NAME'),
@@ -41,20 +42,21 @@ class addItems(Resource):
     def post(self):
         cur = conn.cursor()
         for item in request.json:
+            print(item)
             cur.execute("SELECT * FROM pantry WHERE name = %s", (item['name'],))
             rows = cur.fetchall()
             if len(rows) > 0:
                 cur.execute("UPDATE pantry SET quantity = quantity + %s WHERE name = %s", (item['quantity'], item['name'],))
             else:
-                cur.execute("INSERT INTO pantry (name, quantity, unit, category, expiration_date) VALUES (%s, %s, %s, %s, %s)", (item['name'], item['quantity'], item['unit'], item['category'], item['expiration_date']))
+                cur.execute("INSERT INTO pantry (name, quantity, unit, category) VALUES (%s, %s, %s, %s)", (item['name'], item['quantity'], item['unit'], item['category'].lower()))
         conn.commit()
         cur.close()
 
         return {'status': 'success'}
-
 class removeItem(Resource):
     def post(self):
         cur = conn.cursor()
+        print(request.json['name'])
         cur.execute("DELETE FROM pantry WHERE name = %s", (request.json['name'],))
         conn.commit()
         cur.close()
@@ -81,17 +83,17 @@ class getAllItems(Resource):
         cur.close()
 
         return {'status': 'success',
-                'data': json.dumps(rows, default=str, sort_keys=True)}
+                'data': rows}
     
 class getByCategory(Resource):
-    def get(self):
+    def post(self):
         cur = conn.cursor()
-        cur.execute("SELECT name, quantity, unit FROM pantry WHERE category = %s", (request.json['category'],))
+        cur.execute("SELECT name, quantity, unit FROM pantry WHERE category = %s", (request.json['category'].lower(),))
         rows = cur.fetchall()
         cur.close()
 
         return {'status': 'success',
-                'data': json.dumps(rows, default=str, sort_keys=True)}
+                'data': rows}
         
   
 api.add_resource(generateRecipe, '/generateRecipe')

@@ -9,6 +9,7 @@ function PantryComponent({ title, items }) {
           icon={item.icon}
           title={item.title}
           keyRoute={item.key}
+          key={item.key}
         />
       ))}
     </div>
