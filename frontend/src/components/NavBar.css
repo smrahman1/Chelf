@@ -1,0 +1,13 @@
+.navContainer {
+  background-color: #ff6262;
+  border-radius: 20px 20px 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 10px;
+}

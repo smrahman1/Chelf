@@ -1,0 +1,26 @@
+.container1 {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #e4e4e4;
+  width: 80%;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  /* width: 100%; */
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: row;
+  font-size: 24px;
+}
+
+.title2 {
+  flex-direction: row;
+  font-size: 24px;
+}

@@ -1,0 +1,21 @@
+.rounded-button {
+  background-color: white;
+  padding: 10px 25px;
+  border-radius: 20px;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  /* gap: 20px; */
+}
+
+.innerButton {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.title2 {
+  font-size: 16px;
+}
