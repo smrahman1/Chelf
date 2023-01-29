@@ -20,7 +20,7 @@ function Generate() {
   return (
     <>
       <div className="container3">
-        <div className="title">Generate Recipes</div>
+        <div className="title3">Generate Recipes</div>
         <LoopIcon className="cycleIcon" />
       </div>
 
