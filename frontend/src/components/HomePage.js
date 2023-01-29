@@ -15,11 +15,11 @@ import {
 function HomePage() {
   const RefrigeratorItems = [
     { icon: <LiquorIcon />, title: "Drinks and Liquor", key: "Drinks" },
-    { icon: <KebabDiningIcon />, title: "Meats", key: "Meats" },
+    { icon: <KebabDiningIcon />, title: "Meats", key: "Meat" },
     {
       icon: <GiFruitBowl size={"24px"} />,
       title: "Fruits/Vegetables",
-      key: "Fruits-Vegetables",
+      key: "Fruit-Vegetable",
     },
     {
       icon: <GiHoneyJar size="24px" />,
@@ -43,7 +43,7 @@ function HomePage() {
     {
       icon: <GiSlicedBread size="24px" />,
       title: "Bread & Wheat",
-      key: "Bread-Wheat",
+      key: "Bread-Grains",
     },
   ];
   return (

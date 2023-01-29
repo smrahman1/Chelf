@@ -9,13 +9,13 @@ import { TextField } from "@mui/material";
 function PantryItem() {
   const category_to_label = {
     Drinks: "Liquids & Drinks",
-    Meats: "Meats",
-    "Fruits-Vegetables": "Fruits & Vegetables",
+    Meat: "Meats",
+    "Fruit-Vegetable": "Fruits & Vegetables",
     Toppings: "Jams & Toppings",
     Spices: "Spices",
     Oil: "Oils & Other Liquids",
     "Rice-Pasta": "Pastas & Rice",
-    "Bread-Wheat": "Breads & Wheat",
+    "Bread-Grains": "Breads & Wheat",
   };
 
   const { category } = useParams();
