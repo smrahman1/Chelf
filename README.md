@@ -2,5 +2,4 @@
 
 Make Every Grocery Penny Count
 
-
-![Chelf_app](https://user-images.githubusercontent.com/smrahman1/Chelf/blob/6dc23fcdeb5871939f37e886c4537178d1f1f1bf/1.jpg)
+![1](https://user-images.githubusercontent.com/95193151/215348859-6e50b5e6-3f2c-4df7-887a-6f9a1e8f959c.jpg)
